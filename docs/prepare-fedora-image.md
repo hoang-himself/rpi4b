@@ -33,6 +33,10 @@
    unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
    unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 
+   # Tweak dnf download speed
+   echo 'max_parallel_download=16' >>/etc/dnf/dnf.conf
+   echo 'fastestmirror=True' >>/etc/dnf/dnf.conf
+
    exit
    ```
 
