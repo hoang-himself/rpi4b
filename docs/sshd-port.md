@@ -1,4 +1,4 @@
-# Change SSHd port
+# Changing SSHd port
 
 1. Change `sshd` configs in `/etc/ssh` (remember to restart `sshd` service)
 2. Update `SELinux` configs (if applicable)

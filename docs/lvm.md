@@ -1,4 +1,4 @@
-# Extend Linux LVM partition size
+# Extending Linux LVM partition size
 
 Partition -> Physical volume -> Volume group -> Logical volume -> File system
 
