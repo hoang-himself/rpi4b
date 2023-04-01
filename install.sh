@@ -22,7 +22,7 @@ function set_openssh {
 
 function set_runcom {
   for rc in ./runcoms/*; do
-    ln -frs "$rc" "${ZDOTDIR:-$HOME/.config/zsh}/zshrc.d/$(basename "$rc")"
+    [[ -f "$rc" ]] && ln -frs "$rc" "$ZDOTDIR/zshrc.d/$(basename "$rc")"
   done
 }
 
