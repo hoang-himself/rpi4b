@@ -89,8 +89,8 @@
     2. `firewalld`: `/usr/lib/firewalld`, `/etc/firewalld`
 
         ```shell
-        sudo firewall-cmd --permanent --add-port=69420/tcp
-        # or firewall-cmd --permanent --service=ssh --add-port 69420/tcp
+        sudo firewall-cmd --permanent --service=ssh --add-port 69420/tcp
+        #sudo firewall-cmd --permanent --add-port=69420/tcp
         sudo firewall-cmd --reload
         ```
 

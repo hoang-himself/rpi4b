@@ -10,7 +10,7 @@ This note makes a few assumptions:
 
 ### Download raw image and decompress
 
-Make sure to download the `Raw image for aarch64` from [their download page](https://getfedora.org/en/server/download/)
+Make sure to download the `Raw image for aarch64` from [the download page](https://getfedora.org/en/server/download/)
 
 ### Mount the file system
 
