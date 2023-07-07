@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 podman run -d --replace -p 80:80 --name xray \
-  -v "$PWD/config.json:/etc/xray/config.json:Z" \
+  -v 'xray:/etc/xray' \
+  -v "$PWD/config.json:/etc/xray/config.json:z" \
   docker.io/teddysun/xray:latest

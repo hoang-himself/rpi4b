@@ -9,7 +9,7 @@ podman run -d --replace -p 51820:51820/udp --name wireguard \
   -e PEERS=3 \
   -e PEERDNS=auto \
   -e INTERNAL_SUBNET=192.168.0.0 \
-  -v '/opt/wireguard-server/config:/config:Z' \
-  -v '/lib/modules:/lib/modules:Z' \
+  -v '/opt/wireguard-server/config:/config:z' \
+  -v '/lib/modules:/lib/modules:z' \
   --sysctl net.ipv4.conf.all.src_valid_mark=1 \
   lscr.io/linuxserver/wireguard:latest
