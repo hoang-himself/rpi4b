@@ -15,12 +15,12 @@ Make sure to download the `Raw image for aarch64` from [the download page](https
 ### Mount the file system
 
 ```shell
-sudo kpartx -av Fedora-Server.aarch64.raw
-sudo mkdir -p /mnt/raw3
-sudo mount /dev/fedora/root /mnt/raw3
+kpartx -av Fedora-Server.aarch64.raw
+mkdir -p /mnt/raw3
+mount /dev/fedora/root /mnt/raw3
 
-sudo dnf install -y qemu-user-static
-sudo systemctl restart systemd-binfmt
+dnf install -y qemu-user-static
+systemctl restart systemd-binfmt
 ```
 
 ### Prepare the image
@@ -28,7 +28,7 @@ sudo systemctl restart systemd-binfmt
 Firstly, `chroot` to the mount to make the changes effective to the image
 
 ```shell
-sudo chroot /mnt/raw3 /bin/bash
+chroot /mnt/raw3 /bin/bash
 ```
 
 #### System setup
@@ -81,10 +81,10 @@ exit
 ### Unmount the file system
 
 ```shell
-sudo umount /mnt/raw3
-sudo pvscan
-sudo vgchange --activate n fedora
-sudo kpartx -d Fedora-Server.aarch64.raw
+umount /mnt/raw3
+pvscan
+vgchange --activate n fedora
+kpartx -d Fedora-Server.aarch64.raw
 ```
 
 ### Repack the image
@@ -111,8 +111,8 @@ timedatectl set-local-rtc no
 Your router must allow mDNS for this to work
 
 ```shell
-sudo dnf install -y avahi
-sudo systemctl restart avahi-daemon.service
-sudo firewall-cmd --permanent --add-service mdns
-sudo firewall-cmd --reload
+dnf install -y avahi
+systemctl restart avahi-daemon.service
+firewall-cmd --permanent --add-service mdns
+firewall-cmd --reload
 ```

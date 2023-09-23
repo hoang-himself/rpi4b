@@ -4,14 +4,14 @@
 2. Update `SELinux` configs (if applicable)
 
     ```shell
-    sudo semanage port -a -t ssh_port_t -p tcp 69420
+    semanage port -a -t ssh_port_t -p tcp 69420
     ```
 
 3. Open the port on the firewall
     1. `ufw`: `/etc/default/ufw`, `/etc/ufw`
 
         ```shell
-        sudo ufw allow 69420 comment 'sshd'
+        ufw allow 69420 comment 'sshd'
         ```
 
         `user.rules`:
@@ -89,9 +89,9 @@
     2. `firewalld`: `/usr/lib/firewalld`, `/etc/firewalld`
 
         ```shell
-        sudo firewall-cmd --permanent --service=ssh --add-port 69420/tcp
-        #sudo firewall-cmd --permanent --add-port=69420/tcp
-        sudo firewall-cmd --reload
+        firewall-cmd --permanent --service=ssh --add-port 69420/tcp
+        #firewall-cmd --permanent --add-port=69420/tcp
+        firewall-cmd --reload
         ```
 
         `services/ssh.xml`:
