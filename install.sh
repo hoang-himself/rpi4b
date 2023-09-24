@@ -54,16 +54,4 @@ function main {
   #set_unprivileged_port_start
 }
 
-# https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-  -i | --install)
-    main
-    shift
-    ;;
-  *)
-    echo Unrecognized option \`"$1"\'
-    shift
-    ;;
-  esac
-done
+main
