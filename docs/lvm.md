@@ -1,6 +1,6 @@
 # Extending Linux LVM partition size
 
-Partition -> Physical volume -> Volume group -> Logical volume -> File system
+> Partition -> Physical volume -> Volume group -> Logical volume -> File system
 
 ```shell
 pvresize /dev/sda3
