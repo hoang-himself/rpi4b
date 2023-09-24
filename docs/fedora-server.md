@@ -34,9 +34,6 @@ chroot /mnt/raw3 /bin/bash
 #### System setup
 
 ```shell
-# Set pretty, static and transient hostnames
-hostnamectl hostname raspberrypi.local
-
 # Disable initial setup
 unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
 unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
@@ -60,7 +57,7 @@ groupadd -g 1000 pi
 useradd -g pi -G wheel -m -u 1000 -p <password> pi
 ```
 
-#### (Optional) Set up authorized SSH keys
+#### (Optional) Setting authorized SSH keys
 
 ```shell
 mkdir -p /home/pi/.ssh
@@ -94,6 +91,12 @@ Compress as `xz` using your favorite tool, then use [Raspberry Pi Imager](https:
 ## (Optional) Post-installation configurations
 
 These tasks cannot be performed during the [preparation step](#preparing-the-installation-image) due to various reasons
+
+### Setting hostname (pretty, static, transient)
+
+```shell
+hostnamectl hostname raspberrypi.local
+```
 
 ### Setting time zone
 
