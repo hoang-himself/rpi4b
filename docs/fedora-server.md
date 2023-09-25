@@ -31,13 +31,16 @@ Firstly, `chroot` to the mount to make the changes effective to the image
 chroot /mnt/raw3 /bin/bash
 ```
 
-#### System setup
+#### Disable OOBE
 
 ```shell
-# Disable initial setup
 unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
 unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 ```
+
+#### Enable mDNS
+
+Go to `/etc/systemd/resolved.conf` and change `#MulticastDNS=no` to `MulticastDNS=yes`
 
 #### Tweak `dnf` for faster downloads
 
@@ -107,15 +110,4 @@ If your applications require a different time zone, in most cases, it is possibl
 ```shell
 timedatectl set-timezone UTC
 timedatectl set-local-rtc no
-```
-
-### Enable mDNS
-
-Your router must allow mDNS for this to work
-
-```shell
-dnf install -y avahi
-systemctl restart avahi-daemon.service
-firewall-cmd --permanent --add-service mdns
-firewall-cmd --reload
 ```
