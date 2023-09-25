@@ -50,8 +50,8 @@ function main {
   install_base
   set_openssh
   set_runcom
-  #set_firewall
-  #set_unprivileged_port_start
+  set_firewall
+  set_unprivileged_port_start
 }
 
 main

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 function install_base {
-  sudo dnf install -y openssh-server nss-mdns avahi
-  sudo systemctl enable --now avahi-daemon.service
+  sudo dnf install -y openssh-server
 }
 
 function install_vcgencmd {
@@ -28,4 +27,5 @@ function set_firewall {
   sudo firewall-cmd --permanent --add-service http
   sudo firewall-cmd --permanent --add-service https
   sudo firewall-cmd --permanent --add-service http3
+  sudo firewall-cmd --reload
 }
