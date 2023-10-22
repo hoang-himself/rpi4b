@@ -40,7 +40,13 @@ unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 
 #### Enable mDNS
 
-Go to `/etc/systemd/resolved.conf` and change `#MulticastDNS=no` to `MulticastDNS=yes`
+Firstly, go to `/etc/systemd/resolved.conf` and change `#MulticastDNS=no` to `MulticastDNS=yes`
+
+Then, enable mDNS for your current connection
+
+```shell
+nmcli connection modify NAME +connection.mdns 2
+```
 
 #### Tweak `dnf` for faster downloads
 
