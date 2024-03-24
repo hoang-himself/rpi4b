@@ -1,4 +1,4 @@
-# Installing Fedora Server
+# Preparing Fedora Server
 
 This note makes a few assumptions:
 
