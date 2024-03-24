@@ -51,7 +51,6 @@ function main {
   set_openssh
   set_runcom
   set_firewall
-  set_unprivileged_port_start
 }
 
 main
