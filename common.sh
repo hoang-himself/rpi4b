@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-if [[ $EUID -eq 0 ]]; then
-  echo 'Run script without sudoer'
-  exit 1
-fi
-
-if [[ -x "$(command -v apt)" ]]; then
-  . ./install_apt.sh
-elif [[ -x "$(command -v dnf)" ]]; then
-  . ./install_dnf.sh
-fi
 
 function set_openssh {
   for rc in ./configs/sshd_config.d/*.conf; do
@@ -45,12 +35,3 @@ function repair_locale {
   export LANG=en_US.UTF-8
   export LC_ALL=en_US.UTF-8
 }
-
-function main {
-  install_base
-  set_openssh
-  set_runcom
-  set_firewall
-}
-
-main

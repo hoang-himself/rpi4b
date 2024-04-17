@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+if [[ $EUID -eq 0 ]]; then
+  echo 'Run script without sudoer'
+  exit 1
+fi
+
+if ! command -v dnf &>/dev/null; then
+  echo 'dnf not found'
+  exit 1
+fi
+
+#shellcheck source=./common.sh
+. ./common.sh
 
 function install_base {
   sudo dnf install -y openssh-server
@@ -29,3 +41,11 @@ function set_firewall {
   sudo firewall-cmd --permanent --add-service http3
   sudo firewall-cmd --reload
 }
+
+function main {
+  install_base
+  set_openssh
+  set_runcom
+}
+
+main
