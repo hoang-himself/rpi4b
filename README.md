@@ -1,20 +1,14 @@
-# Extra things I put on my Raspberry Pi
+# Dotfiles
 
-[![Linux](https://github.com/hoang-himself/raspberrypi/actions/workflows/linux.yml/badge.svg)](https://github.com/hoang-himself/raspberry/actions/workflows/linux.yml)
+[![Linux](https://github.com/hoang-himself/raspberry-pi/actions/workflows/linux.yml/badge.svg)](https://github.com/hoang-himself/dotfiles/actions/workflows/linux.yml)
 
-Requires [dotfiles](https://github.com/hoang-himself/dotfiles)
+## Disclaimer
 
-## Getting started
+You should not clone and use this repo directly, instead create a fork or use this repo as a template to create a new one.
+Review the code and remove things you don't want or need.
 
-You don't.
+Use at your own risk!
 
-<!--
-## FAQ/Notes to self
+## Feedback
 
-### Generate systemd units for Podman
-
-```shell
-podman generate systemd --pod-prefix pod --container-prefix container --name name --files --new
-```
-
--->
+Suggestions/improvements are [welcome and encouraged](https://github.com/raspberry-pi/dotfiles/issues)!
