@@ -1,4 +1,4 @@
-# Preparing Fedora Server
+# Installing Fedora Server
 
 This note makes a few assumptions:
 
@@ -40,12 +40,11 @@ unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 
 #### Enable mDNS
 
-Firstly, go to `/etc/systemd/resolved.conf` and change `#MulticastDNS=no` to `MulticastDNS=yes`
-
-Then, enable mDNS for your current connection
-
 ```shell
-nmcli connection modify NAME +connection.mdns 2
+[[ -f /etc/systemd/resolved.conf ]] \
+  && sed -i 's/#MulticastDNS=no/MulticastDNS=yes/' /etc/systemd/resolved.conf \
+  || echo 'MulticastDNS=yes' >>/etc/systemd/resolved.conf
+nmcli connection modify <NAME> +connection.mdns 2
 ```
 
 #### Tweak `dnf` for faster downloads
@@ -66,7 +65,7 @@ groupadd -g 1000 pi
 useradd -g pi -G wheel -m -u 1000 -p <password> pi
 ```
 
-#### (Optional) Setting authorized SSH keys
+#### Setting authorized SSH keys
 
 ```shell
 mkdir -p /home/pi/.ssh
@@ -97,7 +96,7 @@ kpartx -d Fedora-Server.aarch64.raw
 
 Compress as `xz` using your favorite tool, then use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) or equivalent tools to write the image to your medium
 
-## (Optional) Post-installation configurations
+## Post-installation configurations
 
 These tasks cannot be performed during the [preparation step](#preparing-the-installation-image) due to various reasons
 
@@ -107,7 +106,7 @@ These tasks cannot be performed during the [preparation step](#preparing-the-ins
 hostnamectl hostname raspberrypi.local
 ```
 
-### Setting time zone
+### Setting timezone
 
 Since this is a server image, it is recommended to set the timezone to UTC
 
