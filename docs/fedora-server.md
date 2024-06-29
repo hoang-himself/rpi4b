@@ -1,11 +1,5 @@
 # Installing Fedora Server
 
-This note makes a few assumptions:
-
-- The name of the raw image file is `Fedora-Server.aarch64.raw`
-- The group's name and ID are `pi` and `1000` respectively
-- The user's name and ID are `pi` and `1000` respectively
-
 ## Preparing the installation image
 
 ### Download raw image and decompress
@@ -23,22 +17,38 @@ dnf install -y qemu-user-static
 systemctl restart systemd-binfmt
 ```
 
-### Preparing the image
-
-Firstly, `chroot` to the mount to make the changes effective to the image
+### `chroot` into` the image
 
 ```shell
 chroot /mnt/raw3 /bin/bash
 ```
 
-#### Disable OOBE
+### Disable OOBE
 
 ```shell
 unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
 unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 ```
 
-#### Setting static IP address, hostname and enable mDNS
+### Tweak `dnf` for faster downloads
+
+```shell
+echo 'max_parallel_downloads=16' >>/etc/dnf/dnf.conf
+echo 'fastestmirror=True' >>/etc/dnf/dnf.conf
+```
+
+### Users and groups
+
+```shell
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' >>/etc/sudoers.d/wheel-nopasswd
+groupadd -g 1000 pi
+
+# Initially the user has no password to be logged in with
+# If you skip -p, you must add an ssh key to login
+useradd -g pi -G wheel -m -u 1000 -p <password> pi
+```
+
+### Set static IP address, hostname and enable mDNS
 
 ```shell
 [[ -f /etc/systemd/resolved.conf ]] \
@@ -54,7 +64,7 @@ where:
 - `<INTERFACE>` can be obtained with `nmcli device`
 - Relevant IPv6 configurations can be added by replacing `4` with `6`
 
-#### Changing SSHD port
+### Change SSHD port
 
 First, enable the new port in SELinux and the firewall
 
@@ -69,25 +79,7 @@ firewall-cmd --reload
 
 Then, change revelant `sshd` configs in `/etc/ssh`, then restart `sshd` service
 
-#### Tweak `dnf` for faster downloads
-
-```shell
-echo 'max_parallel_downloads=16' >>/etc/dnf/dnf.conf
-echo 'fastestmirror=True' >>/etc/dnf/dnf.conf
-```
-
-#### Users and groups
-
-```shell
-echo '%wheel ALL=(ALL) NOPASSWD: ALL' >>/etc/sudoers.d/wheel-nopasswd
-groupadd -g 1000 pi
-
-# Initially the user has no password to be logged in with
-# If you skip -p, you must add an ssh key to login
-useradd -g pi -G wheel -m -u 1000 -p <password> pi
-```
-
-#### Setting authorized SSH keys
+### Set authorized SSH keys
 
 ```shell
 mkdir -p /home/pi/.ssh
@@ -96,18 +88,17 @@ chmod 700 /home/pi/.ssh
 chmod 600 /home/pi/.ssh/authorized_keys
 ```
 
-#### Permissions
-
-This step must be performed last
+### Permissions
 
 ```shell
 chown -R pi:pi /home/pi
-exit
 ```
 
-### Unmount the file system
+### Exit `chroto` and unmount the file system
 
 ```shell
+exit
+
 umount /mnt/raw3
 pvscan
 vgchange --activate n fedora

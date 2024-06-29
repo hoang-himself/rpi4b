@@ -1,6 +1,6 @@
 # Installing Fedora IoT on RPi4
 
-## Installing Fedora IoT
+## Flash the image
 
 The following command will wipe and write Fedora IoT with a nologin root account:
 
@@ -21,7 +21,7 @@ where:
 
 The device can only be logged in via SSH using the configured key
 
-### Disabling unneeded service
+### Disable unneeded services
 
 ```shell
 for service in zezere_ignition.timer zezere_ignition zezere_ignition_banner; do
@@ -49,7 +49,7 @@ chmod 600 /var/home/pi/.ssh/authorized_keys
 chown -R pi:pi /var/home/pi
 ```
 
-### Setting static IP address, hostname and enable mDNS
+### Set static IP address, hostname and enable mDNS
 
 ```shell
 rpm-ostree install avahi nss-mdns
@@ -64,7 +64,7 @@ where:
 - `<INTERFACE>` can be obtained with `nmcli device`
 - Relevant IPv6 configurations can be added by replacing `4` with `6`
 
-### Changing SSHD port
+### Change SSHD port
 
 First, enable the new port in SELinux and the firewall
 
@@ -79,7 +79,7 @@ firewall-cmd --reload
 
 Then, change revelant `sshd` configs in `/etc/ssh`, then restart `sshd` service
 
-### Setting timezone
+### Set timezone
 
 Since this is a server image, it is recommended to set the timezone to UTC
 
