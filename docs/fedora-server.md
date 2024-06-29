@@ -23,7 +23,7 @@ dnf install -y qemu-user-static
 systemctl restart systemd-binfmt
 ```
 
-### Prepare the image
+### Preparing the image
 
 Firstly, `chroot` to the mount to make the changes effective to the image
 
@@ -38,14 +38,21 @@ unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
 unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 ```
 
-#### Enable mDNS
+#### Networking
 
 ```shell
 [[ -f /etc/systemd/resolved.conf ]] \
   && sed -i 's/#MulticastDNS=no/MulticastDNS=yes/' /etc/systemd/resolved.conf \
   || echo 'MulticastDNS=yes' >>/etc/systemd/resolved.conf
-nmcli connection modify <NAME> +connection.mdns 2
+
+nmcli connection add type ethernet ifname <INTERFACE> con-name <NAME> ip4 <ADDRESS> gw4 <GATEWAY> -- +ipv4.dns <DNS> +connection.mdns 2
+nmcli connection up <NAME>
 ```
+
+where:
+
+- `<INTERFACE>` can be obtained with `nmcli device`
+- Relevant IPv6 configurations can be added by replacing `4` with `6`
 
 #### Tweak `dnf` for faster downloads
 
@@ -76,7 +83,7 @@ chmod 600 /home/pi/.ssh/authorized_keys
 
 #### Permissions
 
-This step has to be performed last
+This step must be performed last
 
 ```shell
 chown -R pi:pi /home/pi

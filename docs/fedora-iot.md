@@ -21,6 +21,16 @@ where:
 
 The device can only be logged in via SSH using the configured key
 
+### Disabling unneeded service
+
+```shell
+for service in zezere_ignition.timer zezere_ignition zezere_ignition_banner; do
+  sudo systemctl stop $service
+  sudo systemctl disable $service
+  sudo systemctl mask $service
+done
+```
+
 ### Users and groups
 
 ```shell
@@ -39,18 +49,20 @@ chmod 600 /var/home/pi/.ssh/authorized_keys
 chown -R pi:pi /var/home/pi
 ```
 
-#### Enable mDNS
+### Networking
 
 ```shell
 rpm-ostree install avahi nss-mdns
-nmcli connection modify <NAME> +connection.mdns 2
-```
-
-### Setting hostname (pretty, static, transient)
-
-```shell
 hostnamectl hostname raspberrypi.local
+
+nmcli connection add type ethernet ifname <INTERFACE> con-name <NAME> ip4 <ADDRESS> gw4 <GATEWAY> -- +ipv4.dns <DNS> +connection.mdns 2
+nmcli connection up <NAME>
 ```
+
+where:
+
+- `<INTERFACE>` can be obtained with `nmcli device`
+- Relevant IPv6 configurations can be added by replacing `4` with `6`
 
 ### Setting timezone
 
@@ -61,14 +73,4 @@ If your applications require a different time zone, in most cases, it is possibl
 ```shell
 timedatectl set-timezone UTC
 timedatectl set-local-rtc no
-```
-
-### Disabling unneeded service
-
-```shell
-for service in zezere_ignition.timer zezere_ignition zezere_ignition_banner; do
-  sudo systemctl stop $service
-  sudo systemctl disable $service
-  sudo systemctl mask $service
-done
 ```

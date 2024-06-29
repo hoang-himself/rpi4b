@@ -39,3 +39,21 @@ To generate the encrypted password, the easiest way is to use OpenSSL on a Raspb
 ```bash
 echo 'mypassword' | openssl passwd -6 -stdin
 ```
+
+## Post-installation configurations
+
+### Networking
+
+Append these lines to `/etc/dhcpcd.conf`:
+
+```text
+interface <INTERFACE>
+static ip_address=<ADDRESS>/24
+static routers=<GATEWAY>
+static domain_name_servers=<DNS>
+```
+
+At `domain_name_servers`, `static` may be substituted with `inform`:
+
+- `inform`: If the requested IP address is already in use, the computer will choose another address
+- `static`: If the requested IP address is already in use, the computer will have no IP address at all
