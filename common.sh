@@ -7,13 +7,13 @@ function set_openssh {
   for rc in ./configs/ssh_config.d/*.conf; do
     [[ -f "$rc" ]] && ln -frs "$rc" "$HOME/.ssh/config.d/$(basename "$rc")"
   done
-  ln -frs ./configs/sshrc "$HOME/.ssh/rc"
 }
 
 function set_runcom {
-  for rc in ./runcoms/*; do
+  for rc in ./runcoms/*.zsh; do
     [[ -f "$rc" ]] && ln -frs "$rc" "$ZDOTDIR/zshrc.d/$(basename "$rc")"
   done
+  ln -frs ./runcoms/sshrc "$HOME/.ssh/rc"
 }
 
 function repair_locale {
