@@ -16,13 +16,6 @@ function install_base {
   sudo apt install -y openssh-server
 }
 
-function set_firewall {
-  sudo ufw limit 22 comment 'ssh'
-  sudo ufw enable <<EOF
-y
-EOF
-}
-
 function main {
   install_base
   set_openssh

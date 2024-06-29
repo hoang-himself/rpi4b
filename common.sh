@@ -16,16 +16,6 @@ function set_runcom {
   done
 }
 
-function set_unprivileged_port_start {
-  sudo tee '/etc/sysctl.d/50-rootless-port.conf' <<<'net.ipv4.ip_unprivileged_port_start = 22' >/dev/null
-  sudo sysctl --system >/dev/null
-}
-
-function enable_passwdless_sudo {
-  sudo tee "/etc/sudoers.d/00-$(whoami)" <<<"$(whoami) ALL=(ALL) NOPASSWD: ALL" >/dev/null
-  sudo chmod 0440 "/etc/sudoers.d/00-$(whoami)"
-}
-
 function repair_locale {
   sudo sed -i "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g" -i /etc/locale.gen
   sudo locale-gen en_US.UTF-8
