@@ -65,5 +65,5 @@ First, change revelant `sshd` configs in `/etc/ssh`, then restart `sshd` service
 Then:
 
 ```shell
-ufw allow 69420 comment 'sshd'
+ufw limit 69420 comment 'sshd'
 ```
