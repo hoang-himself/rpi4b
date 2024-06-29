@@ -49,7 +49,7 @@ chmod 600 /var/home/pi/.ssh/authorized_keys
 chown -R pi:pi /var/home/pi
 ```
 
-### Networking
+### Setting static IP address, hostname and enable mDNS
 
 ```shell
 rpm-ostree install avahi nss-mdns
@@ -63,6 +63,21 @@ where:
 
 - `<INTERFACE>` can be obtained with `nmcli device`
 - Relevant IPv6 configurations can be added by replacing `4` with `6`
+
+### Changing SSHD port
+
+First, enable the new port in SELinux and the firewall
+
+```shell
+semanage port -a -t ssh_port_t -p tcp 69420
+
+firewall-cmd --permanent --service ssh --add-port 69420/tcp
+#firewall-cmd --permanent --add-port 69420/tcp
+#firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+```
+
+Then, change revelant `sshd` configs in `/etc/ssh`, then restart `sshd` service
 
 ### Setting timezone
 

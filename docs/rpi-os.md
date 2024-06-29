@@ -57,3 +57,13 @@ At `domain_name_servers`, `static` may be substituted with `inform`:
 
 - `inform`: If the requested IP address is already in use, the computer will choose another address
 - `static`: If the requested IP address is already in use, the computer will have no IP address at all
+
+### Changing SSHD port
+
+First, change revelant `sshd` configs in `/etc/ssh`, then restart `sshd` service
+
+Then:
+
+```shell
+ufw allow 69420 comment 'sshd'
+```
