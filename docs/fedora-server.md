@@ -51,9 +51,9 @@ useradd -g pi -G wheel -m -u 1000 -p <password> pi
 ### Set static IP address, hostname and enable mDNS
 
 ```shell
-[[ -f /etc/systemd/resolved.conf ]] \
-  && sed -i 's/#MulticastDNS=no/MulticastDNS=yes/' /etc/systemd/resolved.conf \
-  || echo 'MulticastDNS=yes' >>/etc/systemd/resolved.conf
+dnf install -y avahi nss-mdns
+firewall-cmd --permanent --add-service mdns
+hostnamectl hostname raspberrypi.local
 
 nmcli connection add type ethernet ifname <INTERFACE> con-name <NAME> ip4 <ADDRESS> gw4 <GATEWAY> -- +ipv4.dns <DNS> +connection.mdns 2
 nmcli connection up <NAME>
