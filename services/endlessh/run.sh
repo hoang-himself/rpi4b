@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-podman run -d --replace -p 22:2222 --name endlessh \
+podman container run -d --replace -p 22:2222 --name endlessh \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \

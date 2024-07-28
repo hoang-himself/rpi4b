@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-podman run -d --replace -p 51820:51820/udp --name wireguard \
+podman container run -d --replace -p 51820:51820/udp --name wireguard \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=UTC \
