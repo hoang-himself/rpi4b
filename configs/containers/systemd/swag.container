@@ -14,4 +14,5 @@ Environment=DNSPLUGIN=porkbun
 Volume=swag:/config
 Volume=%h/.config/containers/swag/config/dns-conf/porkbun.ini:/config/dns-conf/porkbun.ini:Z
 Volume=%h/.config/containers/swag/config/nginx/proxy-confs/registry.subdomain.conf:/config/nginx/proxy-confs/registry.subdomain.conf:Z
+Volume=%h/.config/containers/swag/config/nginx/proxy-confs/ddns.subdomain.conf:/config/nginx/proxy-confs/ddns.subdomain.conf:Z
 AddCapability=NET_ADMIN
