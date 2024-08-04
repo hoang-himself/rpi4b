@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+function install_base {
+  sudo rpm-ostree install avahi buildah git git-lfs neovim nss-mdns qemu-user-static
+}
 
 function set_openssh {
   for rc in ./configs/sshd_config.d/*.conf; do
@@ -7,23 +10,23 @@ function set_openssh {
   for rc in ./configs/ssh_config.d/*.conf; do
     [[ -f "$item" ]] && ln -frs "$item" "$HOME/.ssh/config.d/$(basename "$item")"
   done
-}
-
-function set_runcom {
-  for rc in ./runcoms/*.zsh; do
-    [[ -f "$rc" ]] && ln -frs "$rc" "$ZDOTDIR/zshrc.d/$(basename "$rc")"
-  done
   ln -frs ./runcoms/sshrc "$HOME/.ssh/rc"
 }
 
 function set_containers {
-  mkdir -p "$HOME"/.config/containers/systemd
-
-  for file in ./configs/containers/systemd/*; do
-    [[ -f "$file" ]] && ln -frs "$file" "$XDG_CONFIG_HOME/containers/systemd/$(basename "$file")"
+  for item in ./configs/containers/*/; do
+    ln -frs "$item" "$XDG_CONFIG_HOME/containers/$(basename "$item")"
   done
-
   systemctl --user daemon-reload
+}
+
+function set_firewall {
+  sudo firewall-cmd --permanent --add-service ssh
+  sudo firewall-cmd --permanent --add-service mdns
+  sudo firewall-cmd --permanent --add-service http
+  sudo firewall-cmd --permanent --add-service https
+  sudo firewall-cmd --permanent --add-service http3
+  sudo firewall-cmd --reload
 }
 
 function repair_locale {
@@ -35,3 +38,11 @@ function repair_locale {
   export LANG=en_US.UTF-8
   export LC_ALL=en_US.UTF-8
 }
+
+function main {
+  install_base
+  set_openssh
+  set_containers
+}
+
+main

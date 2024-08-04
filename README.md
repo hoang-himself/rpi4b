@@ -1,6 +1,6 @@
 # Dotfiles
 
-[![Linux](https://github.com/hoang-himself/raspberry-pi/actions/workflows/linux.yml/badge.svg)](https://github.com/hoang-himself/dotfiles/actions/workflows/linux.yml)
+[![Linux](https://github.com/hoang-himself/rpi4b/actions/workflows/linux.yml/badge.svg)](https://github.com/hoang-himself/dotfiles/actions/workflows/linux.yml)
 
 ## Disclaimer
 
@@ -11,4 +11,4 @@ Use at your own risk!
 
 ## Feedback
 
-Suggestions/improvements are [welcome and encouraged](https://github.com/raspberry-pi/dotfiles/issues)!
+Suggestions/improvements are [welcome and encouraged](https://github.com/rpi4b/dotfiles/issues)!
