@@ -1,3 +1,11 @@
 {
-    "python.formatting.provider": "yapf"
+  "files.associations": {
+    "*.build": "properties",
+    "*.container": "properties",
+    "*.image": "properties",
+    "*.kube": "properties",
+    "*.network": "properties",
+    "*.pod": "properties",
+    "*.volume": "properties"
+  }
 }

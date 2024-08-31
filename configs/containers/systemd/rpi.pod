@@ -1,0 +1,7 @@
+[Unit]
+Description=RPi Quadlet Pod
+
+[Pod]
+PodName=quadlet-rpi
+PublishPort=80:80
+PublishPort=443:443

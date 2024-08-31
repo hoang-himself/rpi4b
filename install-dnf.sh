@@ -46,6 +46,7 @@ function main {
   install_base
   set_openssh
   set_runcom
+  set_containers
 }
 
 main

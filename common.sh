@@ -16,6 +16,16 @@ function set_runcom {
   ln -frs ./runcoms/sshrc "$HOME/.ssh/rc"
 }
 
+function set_containers {
+  mkdir -p "$HOME"/.config/containers/systemd
+
+  for file in ./configs/containers/systemd/*; do
+    [[ -f "$file" ]] && ln -frs "$file" "$XDG_CONFIG_HOME/containers/systemd/$(basename "$file")"
+  done
+
+  systemctl --user daemon-reload
+}
+
 function repair_locale {
   sudo sed -i "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g" -i /etc/locale.gen
   sudo locale-gen en_US.UTF-8

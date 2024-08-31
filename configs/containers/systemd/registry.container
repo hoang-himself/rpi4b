@@ -1,0 +1,9 @@
+[Unit]
+Description=Container Registry Container
+
+[Container]
+Image=docker.io/library/registry:latest
+ContainerName=registry%i
+Pod=rpi.pod
+Volume=%h/raspberry-pi/configs/containers/registry/config.yml:/etc/docker/registry/config.yml:ro
+Volume=registry:/var/lib/registry
