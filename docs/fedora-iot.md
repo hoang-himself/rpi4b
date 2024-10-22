@@ -49,6 +49,32 @@ chmod 600 /var/home/pi/.ssh/authorized_keys
 chown -R pi:pi /var/home/pi
 ```
 
+### Connect to wifi
+
+First, see available wifi networks
+
+```shell
+nmcli device wifi list
+```
+
+You can also force a re-scan before viewing available networks
+
+```shell
+nmcli device wifi rescan
+```
+
+Then connect to this network
+
+```shell
+nmcli device wifi connect <SSID> password <PASSWORD>
+```
+
+You can check if the wifi connection is active
+
+```shell
+nmcli connection show --active
+```
+
 ### Set static IP address, hostname and enable mDNS
 
 ```shell
