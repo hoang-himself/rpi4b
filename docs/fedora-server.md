@@ -94,7 +94,7 @@ chmod 600 /home/pi/.ssh/authorized_keys
 chown -R pi:pi /home/pi
 ```
 
-### Exit `chroto` and unmount the file system
+### Exit `chroot` and unmount the file system
 
 ```shell
 exit
