@@ -1,3 +1,5 @@
+wireguard-*/
 *.ini
 *.json
 *.toml
+!.gitkeep

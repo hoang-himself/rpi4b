@@ -1,0 +1,15 @@
+[Unit]
+Description=WireGuard Server Container
+
+[Container]
+Image=lscr.io/linuxserver/wireguard:latest
+Pod=wireguard-server.pod
+Environment=SERVERURL=rpi4b.hoang-himself.dev
+Environment=SERVERPORT=51820
+Environment=PEERS=2
+Environment=PEERDNS=1.1.1.1,8.8.8.8
+Environment=INTERNAL_SUBNET=10.13.13.0
+Environment=PERSISTENTKEEPALIVE_PEERS=all
+Volume=../wireguard-server/config/server:/config/server:Z
+Volume=../wireguard-server/config/wg_confs:/config/wg_confs:Z
+AddCapability=NET_ADMIN NET_RAW
