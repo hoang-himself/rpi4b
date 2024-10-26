@@ -1,3 +1,4 @@
+wireguard-*/config/
 *.ini
 *.json
 *.toml

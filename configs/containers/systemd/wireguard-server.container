@@ -1,0 +1,10 @@
+[Unit]
+Description=WireGuard Server Container
+#modprobe ip_tables
+
+[Container]
+Image=lscr.io/linuxserver/wireguard:latest
+Pod=wireguard-server.pod
+Environment=PEERS=4
+Volume=../wireguard-server/config/wg_confs:/config/wg_confs:Z
+AddCapability=NET_ADMIN NET_RAW

@@ -1,0 +1,9 @@
+[Unit]
+Description=WireGuard Client Container
+
+[Container]
+Image=lscr.io/linuxserver/wireguard:latest
+Pod=wireguard-client.pod
+Volume=../wireguard-client/config/wg_confs:/config/wg_confs:Z
+AddCapability=NET_ADMIN NET_RAW
+Sysctl=net.ipv4.conf.all.src_valid_mark=1
