@@ -1,0 +1,10 @@
+[Unit]
+Description=WireGuard Server Container
+
+[Container]
+Image=lscr.io/linuxserver/wireguard:latest
+ContainerName=wireguard-server
+Pod=rpi.pod
+Environment=PEERS=4
+Volume=/opt/wireguard-server/config:/config:Z
+AddCapability=NET_ADMIN

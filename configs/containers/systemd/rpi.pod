@@ -5,3 +5,4 @@ Description=RPi Quadlet Pod
 PodName=quadlet-rpi
 PublishPort=80:80
 PublishPort=443:443
+PublishPort=51820:51820/udp
