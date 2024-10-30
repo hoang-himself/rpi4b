@@ -2,10 +2,10 @@
 
 function set_openssh {
   for rc in ./configs/sshd_config.d/*.conf; do
-    [[ -f "$rc" ]] && sudo ln -frs "$rc" "/etc/ssh/sshd_config.d/$(basename "$rc")"
+    [[ -f "$item" ]] && sudo ln -frs "$item" "/etc/ssh/sshd_config.d/$(basename "$item")"
   done
   for rc in ./configs/ssh_config.d/*.conf; do
-    [[ -f "$rc" ]] && ln -frs "$rc" "$HOME/.ssh/config.d/$(basename "$rc")"
+    [[ -f "$item" ]] && ln -frs "$item" "$HOME/.ssh/config.d/$(basename "$item")"
   done
 }
 
