@@ -3,7 +3,6 @@ Description=Container Registry Container
 
 [Container]
 Image=docker.io/library/registry:latest
-ContainerName=registry%i
 Pod=rpi.pod
 Volume=registry:/var/lib/registry
-Volume=%h/.config/containers/registry/config.yml:/etc/docker/registry/config.yml:Z
+Volume=../registry/config.yml:/etc/docker/registry/config.yml:Z

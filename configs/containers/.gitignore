@@ -1,5 +1,3 @@
-*
-!systemd/
-!.example
-!.gitkeep
-!.sample
+*.ini
+*.json
+*.toml

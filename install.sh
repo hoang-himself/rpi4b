@@ -14,9 +14,7 @@ function set_openssh {
 }
 
 function set_containers {
-  for item in ./configs/containers/*/; do
-    ln -frs "$item" "$XDG_CONFIG_HOME/containers/$(basename "$item")"
-  done
+  ln -frs './configs/containers/systemd' "$XDG_CONFIG_HOME/containers/systemd"
   systemctl --user daemon-reload
 }
 

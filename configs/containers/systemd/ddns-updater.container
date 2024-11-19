@@ -3,6 +3,5 @@ Description=DDNS Updater Container
 
 [Container]
 Image=ghcr.io/qdm12/ddns-updater:latest
-ContainerName=ddns-updater
 Pod=rpi.pod
-Volume=%h/.config/containers/ddns-updater/data/config.json:/updater/data/config.json:Z
+Volume=../ddns-updater/data/config.json:/updater/data/config.json:Z
