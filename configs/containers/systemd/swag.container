@@ -4,6 +4,7 @@ Description=Swag Container
 [Container]
 Image=lscr.io/linuxserver/swag:latest
 Pod=rpi.pod
+StartWithPod=true
 Environment=URL=hoang-himself.dev
 Environment=SUBDOMAINS=rpi4b
 Environment=ONLY_SUBDOMAINS=true
