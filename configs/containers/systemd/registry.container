@@ -6,4 +6,4 @@ Image=docker.io/library/registry:latest
 Pod=rpi.pod
 StartWithPod=false
 Volume=registry:/var/lib/registry
-Volume=../registry/config.yml:/etc/docker/registry/config.yml:Z
+Volume=../registry/registry/config.yml:/etc/docker/registry/config.yml:Z
