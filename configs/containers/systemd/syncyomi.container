@@ -3,7 +3,5 @@ Description=SyncYomi Container
 
 [Container]
 Image=ghcr.io/syncyomi/syncyomi:latest
-Pod=rpi.pod
-StartWithPod=false
-Volume=syncyomi:/config
+Pod=syncyomi.pod
 Volume=../syncyomi/config/config.toml:/config/config.toml:Z

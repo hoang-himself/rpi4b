@@ -75,7 +75,7 @@ port = 8282
 #
 # Options: "ERROR", "DEBUG", "INFO", "WARN", "TRACE"
 #
-logLevel = "DEBUG"
+logLevel = "WARN"
 
 # Log Max Size
 #
@@ -99,4 +99,4 @@ logLevel = "DEBUG"
 
 # Session secret
 #
-sessionSecret = "cc3f82e994a1f93a908f510c78838e34"
+#sessionSecret = ""
